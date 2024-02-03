@@ -1,5 +1,27 @@
 const router = require("express").Router();
 const hotelcontroller = require("./hotel.controller");
+const checkrole = (userrole) => {
+  return (req, res, next) => {
+    const userrole = req.body || req.header;
+    const user = /^[a-z][A-z]$/g;
+    if (user.test(userrole)) {
+      res.json({ msg: "entry in hotel" });
+    } else {
+      res.json({ msg: "not entry" });
+    }
+  };
+};
+const checkphonenumber = () => {
+  return (req, res, next) => {
+    const userrole = req.body || req.header;
+    const users = /^[0-9]{9}$/g;
+    if (users.test(userrole)) {
+      res.json({ msg: "phone number valid" });
+    } else {
+      res.json({ msg: "number not valid" });
+    }
+  };
+};
 router.get("/", async (req, res, next) => {
   try {
     result = await hotelcontroller.getById(req.params.id);
@@ -7,13 +29,18 @@ router.get("/", async (req, res, next) => {
     next(e);
   }
 });
-router.post("/", async (req, res, next) => {
-  try {
-    result = await hotelcontroller.create(req.body);
-  } catch (e) {
-    next(e);
+router.post(
+  "/",
+  checkrole("user"),
+  checkphonenumber("user"),
+  async (req, res, next) => {
+    try {
+      result = await hotelcontroller.create(req.body);
+    } catch (e) {
+      next(e);
+    }
   }
-});
+);
 router.put("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
