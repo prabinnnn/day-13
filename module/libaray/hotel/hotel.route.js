@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const e = require("express");
 const hotelcontroller = require("./hotel.controller");
 const checkrole = () => {
   return (req, res, next) => {
