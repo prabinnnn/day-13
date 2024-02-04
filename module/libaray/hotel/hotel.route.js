@@ -34,6 +34,7 @@ router.post(
   "/",
   checkrole("user"),
   checkphonenumber("user"),
+  checkin("user"),
   async (req, res, next) => {
     try {
       result = await hotelcontroller.create(req.body);
