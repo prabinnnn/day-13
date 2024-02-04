@@ -22,6 +22,7 @@ const checkphonenumber = () => {
     }
   };
 };
+const checkin = (req, res, next) => {};
 router.get("/", async (req, res, next) => {
   try {
     result = await hotelcontroller.getById(req.params.id);
