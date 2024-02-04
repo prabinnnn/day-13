@@ -5,6 +5,6 @@ const bookSchema = Schema({
   emailaddress: { type: String, required: true },
   checkin: { type: Number, default: Date.now() },
   checkout: { type: Number, default: Date.now() },
-  totalcheck: { type: number, default: Date.now() },
+  totalcheck: { type: Number, default: Date.now() },
 });
 module.exports = model("book", bookSchema);
