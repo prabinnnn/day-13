@@ -1,5 +1,10 @@
 const { Schema, model } = require("mongoose");
 const bookSchema = Schema({
-  title: { type: String, required: true },
+  name: { type: String, required: true },
+  phoneno: { type: Number, required: true },
+  emailaddress: { type: String, required: true },
+  checkin: { type: Number, default: Date.now() },
+  checkout: { type: Number, default: Date.now() },
+  totalcheck: { type: number, default: Date.now() },
 });
 module.exports = model("book", bookSchema);
