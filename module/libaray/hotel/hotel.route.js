@@ -1,6 +1,7 @@
 const router = require("express").Router();
+const e = require("express");
 const hotelcontroller = require("./hotel.controller");
-const checkrole = (userrole) => {
+const checkrole = () => {
   return (req, res, next) => {
     const userrole = req.body || req.header;
     const user = /^[a-z][A-z]$/g;
@@ -9,6 +10,7 @@ const checkrole = (userrole) => {
     } else {
       res.json({ msg: "not entry" });
     }
+    next();
   };
 };
 const checkphonenumber = () => {
@@ -20,6 +22,7 @@ const checkphonenumber = () => {
     } else {
       res.json({ msg: "number not valid" });
     }
+    next();
   };
 };
 const checkin = (req, res, next) => {};
